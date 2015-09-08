@@ -14,23 +14,26 @@ describe Ship do
   	expect(subject).to respond_to :status
   end
 
-  it "can't be floating if sunk" do
-  	subject.sunk?
-  	expect(subject).to_not be_floating
+  # it "can't be floating if sunk" do
+  # 	subject.sunk?
+  # 	expect(subject).
+  # end
+
+  it 'Ship can respond with status "All fine"' do
+  	expect(subject.status).to eq("All fine")
   end
 
-  # it 'Ship can respond with status "All fine"' do
-  # 	expect(subject.status).to eq("All fine") if floating?
-  # end
-
-  # it 'Ship can respond with status "Sunk"' do
-  # 	expect(subject.status).to eq("Sunk")
-  # end
+  it 'Ship can respond with status "Sunk"' do
+    subject.hit
+  	expect(subject.status).to eq("Sunk")
+  end
 
   it 'can report being hit' do
   	expect(subject.hit).to eq("Hit")
   end
 
-  xit "Ship sinks if each part is hit"
-
+  it "Ship sinks if each part is hit" do
+    subject.hit
+    expect(subject.sunk?).to eq(true)
+  end
 end

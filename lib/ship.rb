@@ -1,6 +1,7 @@
 class Ship
 
 def initialize
+	@makeup = [0]
 	@floating = true
 end
 
@@ -9,11 +10,19 @@ def floating?
 end
 
 def sunk?
-	@floating = false
+	if @makeup.inject{|sum,x| sum + x } == 1
+		@floating = false
+		return true
+	else
+		@floating = true
+		return false
+	end
 end
 
 def hit
-	"Hit"
+	@makeup = [1]
+	@floating = false
+	return "Hit"
 end
 
 def status
