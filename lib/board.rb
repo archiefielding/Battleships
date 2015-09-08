@@ -14,15 +14,12 @@ class Board
   end
 
   def place(ship, coordinate)
-    @board.map.with_index do |x, i|
-      if x == coordinate
-        next_coordinate = x.split('')[0] + (x.split('')[-1].to_i + 1).to_s
-        x = 0
-        break if i == ship.makeup.length
-        place(ship, next_coordinate)
-      else
-        x
-      end
+    i = 0
+    while i < ship.makeup.length
+      @board[coordinate] = "0"
+      @board[coordinate+1] = "0"
+      i += 1
     end
+    @board
   end
 end
