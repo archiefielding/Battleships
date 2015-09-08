@@ -1,4 +1,5 @@
 class Ship_2
+  attr_reader :makeup
   def initialize(size)
     @makeup = Array.new(size, 0)
     @floating = true

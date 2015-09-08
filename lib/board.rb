@@ -9,11 +9,20 @@ class Board
     			F1 F2 F3 F4 F5 F6 F7 F8 F9 F10
     			G1 G2 G3 G4 G5 G6 G7 G8 G9 G10
     			H1 H2 H3 H4 H5 H6 H7 H8 H9 H10
-    			I1 I2 I3 I4 I5 I6 I7 I8 I9 I10	
+    			I1 I2 I3 I4 I5 I6 I7 I8 I9 I10
     			J1 J2 J3 J4 J5 J6 J7 J8 J9 J10]
   end
 
   def place(ship, coordinate)
-    @board.map! { |x| x == coordinate ? x = 0 : x}
+    @board.map.with_index do |x, i|
+      if x == coordinate
+        next_coordinate = x.split('')[0] + (x.split('')[-1].to_i + 1).to_s
+        x = 0
+        break if i == ship.makeup.length
+        place(ship, next_coordinate)
+      else
+        x
+      end
+    end
   end
 end
