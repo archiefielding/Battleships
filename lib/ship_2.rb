@@ -1,6 +1,6 @@
 class Ship_2
-  def initialize
-    @makeup = [0, 0]
+  def initialize(size)
+    @makeup = Array.new(size, 0)
     @floating = true
   end
 
